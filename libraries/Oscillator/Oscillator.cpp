@@ -1,5 +1,5 @@
 //--------------------------------------------------------------
-//-- Oscillator.pde
+//-- Oscillator.pde - Adapted for Wemos D1
 //-- Generate sinusoidal oscillations in the servos
 //--------------------------------------------------------------
 //-- (c) Juan Gonzalez-Gomez (Obijuan), Dec 2011
@@ -19,17 +19,21 @@
 //-- the last sample was taken
 bool Oscillator::next_sample()
 {
-  
+
   //-- Read current time
   _currentMillis = millis();
- 
+
   //-- Check if the timeout has passed
   if(_currentMillis - _previousMillis > _TS) {
-    _previousMillis = _currentMillis;   
+    _previousMillis = _currentMillis;
+
+    yield(); // Do (almost) nothing
 
     return true;
   }
-  
+
+  yield(); // Do (almost) nothing
+
   return false;
 }
 
@@ -48,8 +52,8 @@ void Oscillator::attach(int pin, bool rev)
       //-- Initialization of oscilaltor parameters
       _TS=30;
       _T=2000;
-      _N = _T/_TS;
-      _inc = 2*M_PI/_N;
+      _NSamples = _T/_TS;
+      _inc = 2*M_PI/_NSamples;
 
       _previousMillis=0;
 
@@ -62,8 +66,10 @@ void Oscillator::attach(int pin, bool rev)
 
       //-- Reverse mode
       _rev = rev;
+
+      yield(); // Do (almost) nothing
   }
-      
+
 }
 
 //-- Detach an oscillator from his servo
@@ -73,6 +79,7 @@ void Oscillator::detach()
   if(_servo.attached())
         _servo.detach();
 
+  yield(); // Do (almost) nothing
 }
 
 /*************************************/
@@ -82,10 +89,10 @@ void Oscillator::SetT(unsigned int T)
 {
   //-- Assign the new period
   _T=T;
-  
+
   //-- Recalculate the parameters
-  _N = _T/_TS;
-  _inc = 2*M_PI/_N;
+  _NSamples = _T/_TS;
+  _inc = 2*M_PI/_NSamples;
 };
 
 /*******************************/
@@ -105,10 +112,10 @@ void Oscillator::SetPosition(int position)
 /*******************************************************************/
 void Oscillator::refresh()
 {
-  
+
   //-- Only When TS milliseconds have passed, the new sample is obtained
   if (next_sample()) {
-  
+
       //-- If the oscillator is not stopped, calculate the servo position
       if (!_stop) {
         //-- Sample the sine function and set the servo pos
@@ -121,6 +128,6 @@ void Oscillator::refresh()
       //-- It is always increased, even when the oscillator is stop
       //-- so that the coordination is always kept
       _phase = _phase + _inc;
-
+      yield(); // Do (almost) nothing
   }
 }

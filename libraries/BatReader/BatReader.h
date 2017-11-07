@@ -1,6 +1,6 @@
 /******************************************************************************
-* Zowi Battery Reader Library
-* 
+* Zowi Battery Reader Library - Adapted for Wemos D1
+*
 * @version 20150824
 * @author Raul de Pablos Martin
 *
@@ -18,7 +18,11 @@
 ////////////////////////////
 // Definitions            //
 ////////////////////////////
+#if defined(ESP8266)
+#define BAT_PIN A0 // Only one analog pin on Wemos D1, so may conflict with PIN_NoiseSensor (defined in Otto.h)
+#else
 #define BAT_PIN A7
+#endif
 #define BAT_MAX	4.2
 #define BAT_MIN	3.25
 #define ANA_REF	5
@@ -44,28 +48,28 @@ public:
 
 	// readBatPercent
 	double readBatVoltage(void);
-	
+
 	// readBatPercent
 	double readBatPercent(void);
-	
-	
 
-private:	
+
+
+private:
 	////////////////////////////
 	// Enumerations           //
 	////////////////////////////
-	
-	
+
+
 	////////////////////////////
 	// Variables              //
 	////////////////////////////
-	
-	
+
+
 	////////////////////////////
 	// Functions              //
 	////////////////////////////
-	
-	
+
+
 };
 
 #endif // BATREADER_H //

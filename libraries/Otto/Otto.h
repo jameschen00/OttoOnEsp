@@ -1,3 +1,5 @@
+// Otto - Adapted for Wemos D1
+
 #ifndef Otto_h
 #define Otto_h
 
@@ -5,10 +7,15 @@
 #include <Oscillator.h>
 #include <EEPROM.h>
 
+#ifdef Use_US
 #include <US.h>
+#endif
+#ifdef Use_LedMatrix
 #include <LedMatrix.h>
+#endif
+#ifdef Use_BatReader
 #include <BatReader.h>
-
+#endif
 #include "Otto_mouths.h"
 #include "Otto_sounds.h"
 #include "Otto_gestures.h"
@@ -26,8 +33,11 @@
 #define PIN_Buzzer  10
 #define PIN_Trigger 8
 #define PIN_Echo    9
+#if defined(ESP8266)
+#define PIN_NoiseSensor A0 // Only one analog pin on Wemos D1, so may conflict with BAT_PIN (defined in BatReader.h)
+#else
 #define PIN_NoiseSensor A6
-
+#endif
 
 class Otto
 {
@@ -52,7 +62,7 @@ class Otto
     void home();
     bool getRestState();
     void setRestState(bool state);
-    
+
     //-- Predetermined Motion Functions
     void jump(float steps=1, int T = 2000);
 
@@ -76,9 +86,11 @@ class Otto
     int getNoise();      //Noise Sensor
 
     //-- Battery
+    #ifdef Use_BatReader
     double getBatteryLevel();
     double getBatteryVoltage();
-    
+    #endif
+
     //-- Mouth & Animations
     void putMouth(unsigned long int mouth, bool predefined = true);
     void putAnimationMouth(unsigned long int anim, int index);
@@ -92,13 +104,19 @@ class Otto
     //-- Gestures
     void playGesture(int gesture);
 
- 
+
   private:
-    
+
+    #ifdef Use_LedMatrix
     LedMatrix ledmatrix;
+    #endif
+    #ifdef Use_BatReader
     BatReader battery;
+    #endif
     Oscillator servo[4];
+    #ifdef Use_US
     US us;
+    #endif
 
     int servo_pins[4];
     int servo_trim[4];
@@ -106,7 +124,7 @@ class Otto
 
     int pinBuzzer;
     int pinNoiseSensor;
-    
+
     unsigned long final_time;
     unsigned long partial_time;
     float increment[4];
@@ -120,5 +138,3 @@ class Otto
 };
 
 #endif
-
-
