@@ -8,7 +8,7 @@ Then WemosD1 as every Esp8266 has built in wifi, and allow you to serve html fil
 
 ## What have been done so far ?
 
-- Otto_easycal : can be compiled and run on WemosD1, updown and walk commands don't work that good at the moment
+- Otto_easycal : 100% ok
 - Otto_ServoHome : 100% ok
 
 ## Roadmap

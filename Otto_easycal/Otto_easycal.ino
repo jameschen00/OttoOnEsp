@@ -46,11 +46,10 @@ void loop()  //test comparing before & after function
   Otto.home();
 
   delay(4000);
-  /*
+  
   Otto.updown(6, 500, BIG);
   delay(2000);
   
   Otto.walk(4,1800);
   delay(2000);
-  */
 }
