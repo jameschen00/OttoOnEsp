@@ -27,12 +27,8 @@ bool Oscillator::next_sample()
   if(_currentMillis - _previousMillis > _TS) {
     _previousMillis = _currentMillis;
 
-    yield(); // Do (almost) nothing
-
     return true;
   }
-
-  yield(); // Do (almost) nothing
 
   return false;
 }
@@ -66,8 +62,6 @@ void Oscillator::attach(int pin, bool rev)
 
       //-- Reverse mode
       _rev = rev;
-
-      yield(); // Do (almost) nothing
   }
 
 }
@@ -78,8 +72,6 @@ void Oscillator::detach()
    //-- If the oscillator is attached, detach it.
   if(_servo.attached())
         _servo.detach();
-
-  yield(); // Do (almost) nothing
 }
 
 /*************************************/
@@ -112,7 +104,6 @@ void Oscillator::SetPosition(int position)
 /*******************************************************************/
 void Oscillator::refresh()
 {
-
   //-- Only When TS milliseconds have passed, the new sample is obtained
   if (next_sample()) {
 
@@ -128,6 +119,7 @@ void Oscillator::refresh()
       //-- It is always increased, even when the oscillator is stop
       //-- so that the coordination is always kept
       _phase = _phase + _inc;
+
       yield(); // Do (almost) nothing
   }
 }

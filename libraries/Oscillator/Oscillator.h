@@ -23,7 +23,7 @@ class Oscillator
     void detach();
 
     void SetA(unsigned int A) {_A=A;};
-    void SetO(unsigned int O) {_O=O;};
+    void SetO(int O) {_O=O;};
     void SetPh(double Ph) {_phase0=Ph;};
     void SetT(unsigned int T);
     void SetTrim(int trim){_trim=trim;};
@@ -43,7 +43,7 @@ class Oscillator
 
     //-- Oscillators parameters
     unsigned int _A;  //-- Amplitude (degrees)
-    unsigned int _O;  //-- Offset (degrees)
+    int _O;  //-- Offset (degrees)
     unsigned int _T;  //-- Period (miliseconds)
     double _phase0;   //-- Phase (radians)
 
