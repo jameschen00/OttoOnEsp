@@ -8,20 +8,33 @@ Then WemosD1 as every Esp8266 has built in wifi, and allow you to serve html fil
 
 ## What have been done so far ?
 
-- Otto_easycal : 100% ok
-- Otto_ServoHome : 100% ok
+| Sketches                | Working  | Comments |
+| ----------------------- | :------: | -------- |
+| Otto_easycal            | 100% ok  |          |
+| Otto_ServoHome          | 100% ok  |          |
+| Otto_calibration        | no       | I will rewrite quite everything in this sketch. Using SerialUi is not the best option for ESP |
+| Otto_smooth_criminal    | no       |          |
+| Otto_smooth_criminal_US | no       |          |
+| Otto_avoid              | no       |          |
+
+## Supported sensors & devices
+
+At the moment, the otto sensor/devices may be disabled using #ifdef Use_SensorName to take one problem after the other :
+
+| Sensor/device        | Working  | Comments |
+| -------------------- | :------: | -------- |
+| Legs Servos          | yes      |          |
+| Buzzer               | yes      |          |
+| UltraSonic sensor    | no       | will work on it asap |
+| Battery reader       | no       | Only one analog pin on Wemos, may conflict with noise sensor |
+| Noise sensor         | no       | Only one analog pin on Wemos, may conflict with battery reader |
+| Led matrix           | no       |          |
 
 ## Roadmap
 
-Make these sketches compilable and make them run smoothly :
+Make all sketches compilable and make them run smoothly.
 
-- Otto_calibration
-- Otto_SingleLadies
-- Otto_smooth_criminal
-- Otto_smooth_criminal_US
-- Otto_avoid
-
-Also I'd like to test all this on NodeMcu
+Also I'd like to test all this on NodeMcu and ESP32
 
 Then I'd like to go my way on cool stuff like :
 
