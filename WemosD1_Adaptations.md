@@ -12,7 +12,7 @@ Then WemosD1 as every Esp8266 has built in wifi, and allow you to serve html fil
 | ----------------------- | :------: | -------- |
 | Otto_easycal            | 100% ok  |          |
 | Otto_ServoHome          | 100% ok  |          |
-| Otto_singleladies       | 100% ok  |          |
+| Otto_singleladies       | 100% ok  | https://youtu.be/0ht7QITkSCU |
 | Otto_smooth_criminal    | no       |          |
 | Otto_smooth_criminal_US | no       |          |
 | Otto_avoid              | no       |          |
