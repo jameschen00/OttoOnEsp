@@ -42,3 +42,17 @@ Then I'd like to go my way on cool stuff like :
 - OTA : be able to upload new sketches on Otto "Over The Air", with no USB plugged in
 - WebInterface : who need a mobile app when you can have a smooth responsive web interface working in any browser
 - Add numerous sensors and features... this project is cool :)
+
+## Connecting
+
+### OttoOnWemosD1
+
+![Fritzing sketch](doc/OttoOnWemosD1.png)
+
+| Sensor/device      | Board |
+| ------------------ | :---: |
+| Servo YL_BODYLEFT  | D5    |
+| Servo YR_BODYRIGHT | D6    |
+| Servo RL_FOOTLEFT  | D7    |
+| Servo RR_FOOTRIGHT | D8    |   
+| Passive Buzzer     | D4    |   
