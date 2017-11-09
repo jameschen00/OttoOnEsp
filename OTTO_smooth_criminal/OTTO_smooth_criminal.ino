@@ -30,10 +30,10 @@ RR 5==>   -----   ------  <== RL 4
 #define TRIM_YL -7
 //OTTO.setTrims(-7,-4,-4,7);
 
-#define PIN_RR 5
-#define PIN_RL 4
-#define PIN_YR 3
-#define PIN_YL 2
+#define YL_BODYLEFT   D5
+#define YR_BODYRIGHT  D6
+#define RL_FOOTLEFT   D7
+#define RR_FOOTRIGHT  D8
 
 #define INTERVALTIME 10.0 
 
@@ -61,10 +61,10 @@ void setup()
 {
   Serial.begin(19200);
   
-  servo[0].attach(PIN_RR);
-  servo[1].attach(PIN_RL);
-  servo[2].attach(PIN_YR);
-  servo[3].attach(PIN_YL);
+  servo[0].attach(RR_FOOTRIGHT);
+  servo[1].attach(RL_FOOTLEFT);
+  servo[2].attach(YR_BODYRIGHT);
+  servo[3].attach(YL_BODYLEFT);
   
   //EEPROM.write(0,TRIM_RR);
   //EEPROM.write(1,TRIM_RL);
@@ -191,6 +191,7 @@ void oscillate(int A[N_SERVOS], int O[N_SERVOS], int T, double phase_diff[N_SERV
    for (double x=ref; x<T+ref; x=millis()){
      for (int i=0; i<4; i++){
         servo[i].refresh();
+        yield(); // Do (almost) nothing
      }
   }
 }
@@ -225,6 +226,7 @@ void moveNServos(int time, int  newPosition[]){
 
   for(int i=0;i<N_SERVOS;i++){	
     oldPosition[i] = newPosition[i];
+    yield(); // Do (almost) nothing
   }   
 }
 
