@@ -16,10 +16,10 @@
 #define TRIM_YR 26
 #define TRIM_YL 18
 
-#define PIN_RR 3
-#define PIN_RL 2
-#define PIN_YR 4
-#define PIN_YL 5
+#define YL_BODYLEFT   D5
+#define YR_BODYRIGHT  D6
+#define RL_FOOTLEFT   D7
+#define RR_FOOTRIGHT  D8
 
 #define INTERVALTIME 10.0 
 
@@ -41,12 +41,12 @@ void flapping(int steps, int T=1000);
 
 void setup()
 {
-  Serial.begin(19200);
-  
-  servo[0].attach(PIN_RR);
-  servo[1].attach(PIN_RL);
-  servo[2].attach(PIN_YR);
-  servo[3].attach(PIN_YL);
+  Serial.begin(9600);
+
+  servo[0].attach(RR_FOOTRIGHT);
+  servo[1].attach(RL_FOOTLEFT);
+  servo[2].attach(YR_BODYRIGHT);
+  servo[3].attach(YL_BODYLEFT);
   
   int trim;
   
@@ -77,7 +77,7 @@ int t=620;
 double pause=0;
 
 void loop() {
-  
+
   pasitos(8,t*2);
   crusaito(1,t);
   patada(t);
@@ -272,6 +272,7 @@ void oscillate(int A[N_SERVOS], int O[N_SERVOS], int T, double phase_diff[N_SERV
    for (double x=ref; x<T+ref; x=millis()){
      for (int i=0; i<4; i++){
         servo[i].refresh();
+        yield(); // Do (almost) nothing
      }
   }
 }
@@ -306,6 +307,7 @@ void moveNServos(int time, int  newPosition[]){
 
   for(int i=0;i<N_SERVOS;i++){	
     oldPosition[i] = newPosition[i];
+    yield(); // Do (almost) nothing
   }   
 }
 

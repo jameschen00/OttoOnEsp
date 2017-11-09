@@ -12,10 +12,11 @@ Then WemosD1 as every Esp8266 has built in wifi, and allow you to serve html fil
 | ----------------------- | :------: | -------- |
 | Otto_easycal            | 100% ok  |          |
 | Otto_ServoHome          | 100% ok  |          |
-| Otto_calibration        | no       | I will rewrite quite everything in this sketch. Using SerialUi is not the best option for ESP |
+| Otto_singleladies       | 100% ok  |          |
 | Otto_smooth_criminal    | no       |          |
 | Otto_smooth_criminal_US | no       |          |
 | Otto_avoid              | no       |          |
+| Otto_calibration        | no       | I will rewrite quite everything in this sketch. Using SerialUi is not the best option for ESP |
 
 ## Supported sensors & devices
 
